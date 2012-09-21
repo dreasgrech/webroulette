@@ -19,6 +19,7 @@
   margin-top: 3px;
   background-image: url(http://www.dreasgrech.com/upload/extinfobar/img/button_gradient.png);
   -webkit-border-radius: 4px;
+  border-radius: 4px;
   border: 1px solid rgb(152, 143, 102);
   margin: 6px;
   padding: 3px 8px 3px 9px;
