@@ -1,5 +1,6 @@
 <?php
 ini_set('memory_limit', "3M");  
+include("projectkeys.php");
 
 function clamp($value, $min, $max) {
     if ($value >= $min && $value <= $max) {
@@ -12,6 +13,15 @@ function clamp($value, $min, $max) {
 
     return $max;
 } 
+
+$action = $_GET["action"];
+if ($action != "") {
+    if ($action == "key") {
+        $keys = new ProjectKeys();
+        echo $keys->getRandomKey();
+        return;
+    }
+}
 
 $MAX_LENGTH = 10;
 $DEFAULT_LENGTH = 3;

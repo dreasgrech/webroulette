@@ -8,8 +8,13 @@
 <body>
   <div id="container">
     <div id="banner">
-      <input type="button" id="go" Value="Take me somewhere random..."/>
-      <input type="text" placeholder="Bias (single word)" id="bias" title="Bias (single word)"/>
+        <div id="credit">
+                <a href="http://blog.dreasgrech.com/">Andreas Grech</a>
+        </div>
+      <div id="functions">
+        <input type="button" id="go" Value="Take me somewhere random..." disabled="disabled"/>
+        <input type="text" placeholder="Bias (single word)" id="bias" title="Bias (single word)"/>
+    </div>
     </div>
     <div id="viewer">
       <iframe id="frameviewer"></iframe>
@@ -17,6 +22,6 @@
   </div>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
   <script src="js/json2.js"></script>
-  <script src="js/main.js"> </script>
+  <script src="js/main.js"></script>
 </body>
 </html>
