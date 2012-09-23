@@ -32,7 +32,8 @@ $(function() {
 		}
 
 		if (response.error.message && response.error.message === "Daily Limit Exceeded") {
-			alert("Sorry, but my daily limit for the Google Custom Search API has been exceeded.  So, try again tomorrow!\n\nOr, you can steal my code from https://github.com/dreasgrech/webroulette and use your own API key.");
+            getNewApiKey(go);
+			//alert("Sorry, but my daily limit for the Google Custom Search API has been exceeded.  So, try again tomorrow!\n\nOr, you can steal my code from https://github.com/dreasgrech/webroulette and use your own API key.");
 		}
 
 		return true;
@@ -44,8 +45,7 @@ $(function() {
 
 			$.ajax({
 				url: "https://www.googleapis.com/customsearch/v1?key=" + apiKey + "&cx=" + searchEngine + "&q=" + phrase + "&alt=json",
-				dataType: "jsonp",
-				/* http://blog.dreasgrech.com/2012/01/making-facebooks-graph-api-work-in.html */
+				dataType: "jsonp", /* http://blog.dreasgrech.com/2012/01/making-facebooks-graph-api-work-in.html */
 				success: function(data) {
 					var randomLink;
 					if (typeof data === "string") { // For some reason, the data in Firefox is in string format, so I have to parse it with Crockford.
@@ -74,15 +74,20 @@ $(function() {
 			});
 		});
 	},
+    getNewApiKey = function (callback) {
+        $.get("louie.php?action=key", function (response) {
+            apiKey = response;
+            callback();
+        });
+    },
 	frameHeight = $(window).height() - parseInt($("#banner").outerHeight(), 10) - 4; // not sure where this 4 is coming from but without the -4, I get a scrollbar which I don't want.
 
     if (!apiKey) {
-        $.get("louie.php?action=key", function (response) {
-            apiKey = response;
+        getNewApiKey(function () {
             goButton.removeAttr("disabled");
         });
     } else {
-            goButton.removeAttr("disabled");
+        goButton.removeAttr("disabled");
     }
 
 	biasBox.keyup(function(event) {
